@@ -1,0 +1,6 @@
+@gis_vn_after_merge_api_HostAddress = http://localhost:5249
+
+GET {{gis_vn_after_merge_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
