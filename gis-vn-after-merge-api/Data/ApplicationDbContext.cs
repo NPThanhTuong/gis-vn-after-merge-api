@@ -16,6 +16,14 @@ public class ApplicationDbContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.HasPostgresExtension("postgis"); // bật extension PostGIS
+		
+		modelBuilder.Entity<Commune>()
+			.HasOne(c => c.Province)
+			.WithMany(c => c.Communes)
+			.HasForeignKey(c => c.ProvinceId)
+			.OnDelete(DeleteBehavior.Cascade)
+			.IsRequired();
+		
 		base.OnModelCreating(modelBuilder);
 	}
 }

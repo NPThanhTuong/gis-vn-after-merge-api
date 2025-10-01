@@ -1,12 +1,19 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using NetTopologySuite.Geometries;
 
 namespace gis_vn_after_merge_api.Models;
 
+[Table("provinces")]
 public class Province
 {
+	[Column("id")]
 	public int Id { get; set; }
+	
+	[Column("name")]
 	public required string Name { get; set; }
+	
+	[Column("boundary")]
 	public required Polygon Boundary { get; set; }
 	
-	// TODO: add navigation prop to Commune
+	public ICollection<Commune> Communes { get; set; } = new List<Commune>();
 }
