@@ -10,20 +10,18 @@ namespace gis_vn_after_merge_api.Controllers;
 public class ProvinceController(IProvinceService provinceService, IMapper mapper) : ControllerBase
 {
 	[HttpGet]
-	public async Task<ActionResult> GetAllProvinces()
+	public async Task<IActionResult> GetAllProvinces()
 	{
-		try
-		{
-			var result = await provinceService.GetAll();
-			
-			var response = mapper.Map<List<ProvinceDtoRes>>(result);
-			
-			return Ok(response);
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e);
-			return BadRequest("Bad");
-		}
+		var result = await provinceService.GetAll();
+		var response = mapper.Map<List<ProvinceDtoRes>>(result);
+		return Ok(ApiResponse<List<ProvinceDtoRes>>.Success(response));
+	}
+	
+	[HttpGet("{id}")]
+	public async Task<IActionResult> GetProvinceById(int id)
+	{
+		var result = await provinceService.GetById(id);
+		var response = mapper.Map<ProvinceDtoRes>(result);
+		return Ok(ApiResponse<ProvinceDtoRes>.Success(response));
 	}
 }

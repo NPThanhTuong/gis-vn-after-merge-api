@@ -1,3 +1,4 @@
+using gis_vn_after_merge_api.DTOs.Response;
 using gis_vn_after_merge_api.Exceptions;
 
 namespace gis_vn_after_merge_api.Middlewares;
@@ -10,10 +11,10 @@ public class GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<Glob
 		{
 			await next(context);
 		}
-		catch (NotFoundException ex)
+		catch (AppException ex)
 		{
-			logger.LogWarning(ex, "Not found error");
-			await HandleExceptionAsync(context, StatusCodes.Status404NotFound, ex.Message);
+			logger.LogWarning(ex, "App exception handled");
+			await HandleExceptionAsync(context, ex.StatusCode, ex.Message);
 		}
 		catch (Exception ex)
 		{
@@ -27,11 +28,7 @@ public class GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<Glob
 		context.Response.ContentType = "application/json";
 		context.Response.StatusCode = statusCode;
 
-		var result = new
-		{
-			statusCode,
-			error = message
-		};
+		var result = ApiResponse<object>.Fail(message, statusCode);
 
 		await context.Response.WriteAsJsonAsync(result);
 	}

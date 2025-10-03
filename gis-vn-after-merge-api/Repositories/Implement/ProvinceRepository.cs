@@ -8,7 +8,9 @@ public class ProvinceRepository(ApplicationDbContext context) : IProvinceReposit
 {
 	public async Task<Province?> GetById(int id)
 	{
-		return await context.Provinces.FirstOrDefaultAsync(p => p.Id == id);
+		return await context.Provinces
+			.Include(p => p.Communes)
+			.FirstOrDefaultAsync(p => p.Id == id);
 	}
 
 	public async Task<List<Province>> GetAll()

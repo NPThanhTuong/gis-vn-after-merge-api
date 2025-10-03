@@ -1,4 +1,5 @@
 using gis_vn_after_merge_api.Data;
+using gis_vn_after_merge_api.Middlewares;
 using gis_vn_after_merge_api.Repositories;
 using gis_vn_after_merge_api.Repositories.Implement;
 using gis_vn_after_merge_api.Services;
@@ -30,6 +31,9 @@ builder.Services.AddAutoMapper(cfg =>
 	typeof(Program));
 
 var app = builder.Build();
+
+// Custom middleware
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) app.MapOpenApi();

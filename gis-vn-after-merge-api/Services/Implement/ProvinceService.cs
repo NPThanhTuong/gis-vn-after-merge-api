@@ -1,3 +1,4 @@
+using gis_vn_after_merge_api.Exceptions;
 using gis_vn_after_merge_api.Models;
 using gis_vn_after_merge_api.Repositories;
 
@@ -7,15 +8,16 @@ public class ProvinceService(IProvinceRepository provinceRepository) : IProvince
 {
 	public async Task<Province> GetById(int id)
 	{
+		if (id <= 0) throw new InvalidPathParamsException("Province's 'id' must be greater than zero");
 		var result = await provinceRepository.GetById(id);
-
-		return result ?? throw new Exception("Province not found");
+		
+		return result ?? throw new NotFoundException($"Province with id {id} was not found");
 	}
 
 	public async Task<List<Province>> GetAll()
 	{
 		var result = await provinceRepository.GetAll();
-
+		
 		return result;
 	}
 
