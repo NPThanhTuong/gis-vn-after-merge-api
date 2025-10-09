@@ -5,9 +5,9 @@ using Newtonsoft.Json.Linq;
 
 namespace gis_vn_after_merge_api.Helpers;
 
-public class GeoJsonToGeometryConverter : IValueConverter<string, Geometry>
+public class GeoJsonToGeometryConverter : IValueConverter<string, MultiPolygon>
 {
-	public Geometry Convert(string sourceMember, ResolutionContext context)
+	public MultiPolygon Convert(string sourceMember, ResolutionContext context)
 	{
 		if (string.IsNullOrEmpty(sourceMember)) return null!;
 		var reader = new GeoJsonReader();
@@ -18,6 +18,11 @@ public class GeoJsonToGeometryConverter : IValueConverter<string, Geometry>
 
 		if (geometryToken == null) return null!;
 		var geometryJson = geometryToken.ToString();
-		return reader.Read<Geometry>(geometryJson);
+		var geometry = reader.Read<Geometry>(geometryJson);
+
+		if (geometry is Polygon polygon)
+			geometry = new MultiPolygon([polygon]);
+		
+		return (MultiPolygon)geometry;
 	}
 }

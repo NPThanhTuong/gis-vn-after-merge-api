@@ -7,5 +7,5 @@ public class ProvinceDtoRes
 	public string Name { get; set; } = string.Empty;
 	public string Boundary { get; set; } = string.Empty;
 
-	public List<CommuneDtoRes> Communes { get; set; }
+	// public List<CommuneDtoRes> Communes { get; set; }
 }

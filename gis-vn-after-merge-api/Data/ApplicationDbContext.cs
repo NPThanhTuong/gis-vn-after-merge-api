@@ -21,7 +21,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			.OnDelete(DeleteBehavior.Cascade)
 			.IsRequired();
 
-		modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
-		modelBuilder.ApplyConfiguration(new CommuneConfiguration());
+		// Seed sample data
+		// modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
+		// modelBuilder.ApplyConfiguration(new CommuneConfiguration());
 	}
 }

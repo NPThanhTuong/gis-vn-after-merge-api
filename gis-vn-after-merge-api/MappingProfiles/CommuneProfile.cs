@@ -11,10 +11,10 @@ public class CommuneProfile: Profile
 {
 	public CommuneProfile()
 	{
-		CreateMap<Commune, CommuneDtoRes>()
-			.ForMember(
-				dest => dest.Boundary, 
-				opt => opt.MapFrom(src => new GeoJsonWriter().Write(src.Boundary)));
+		// CreateMap<Commune, CommuneDtoRes>()
+		// 	.ForMember(
+		// 		dest => dest.Boundary, 
+		// 		opt => opt.ConvertUsing(new MultiPolygonToGeoJsonConverter(), src => src));
 		
 		CreateMap<CommuneDtoReq, Commune>()
 			.ForMember(

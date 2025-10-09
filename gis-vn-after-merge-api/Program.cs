@@ -8,6 +8,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy(name: "WebGisUi",
+		policy  =>
+		{
+			policy.WithOrigins("https://localhost:7217")
+				.AllowAnyHeader()
+				.AllowAnyMethod();
+		});
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -21,9 +32,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Repository
 builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
+builder.Services.AddScoped<ICommuneRepository, CommuneRepository>();
 
 // Service
 builder.Services.AddScoped<IProvinceService, ProvinceService>();
+builder.Services.AddScoped<ICommuneService, CommuneService>();
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(cfg =>
@@ -39,6 +52,8 @@ app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 app.UseHttpsRedirection();
+
+app.UseCors("WebGisUi");
 
 app.UseAuthorization();
 

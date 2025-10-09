@@ -21,7 +21,7 @@ public class CommuneConfiguration : IEntityTypeConfiguration<Commune>
 				Area = 9.2,
 				Population = 230000,
 				ProvinceId = 1,
-				Boundary = geometryFactory.CreateGeometryCollection([
+				Boundary = geometryFactory.CreateMultiPolygon([
 					geometryFactory.CreatePolygon([
 						new Coordinate(105.81, 21.03),
 						new Coordinate(105.83, 21.03),
@@ -39,7 +39,7 @@ public class CommuneConfiguration : IEntityTypeConfiguration<Commune>
 				Area = 7.7,
 				Population = 142000,
 				ProvinceId = 2,
-				Boundary = geometryFactory.CreateGeometryCollection([
+				Boundary = geometryFactory.CreateMultiPolygon([
 					geometryFactory.CreatePolygon([
 						new Coordinate(106.7, 10.77),
 						new Coordinate(106.72, 10.77),

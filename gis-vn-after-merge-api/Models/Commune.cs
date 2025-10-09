@@ -17,7 +17,7 @@ public class Commune
 
 	[Column("population")] public required int Population { get; set; }
 
-	[Column("boundary")] public required Geometry Boundary { get; set; }
+	[Column("boundary")] public required MultiPolygon Boundary { get; set; }
 
 	[Column("province_id")] public int ProvinceId { get; set; }
 

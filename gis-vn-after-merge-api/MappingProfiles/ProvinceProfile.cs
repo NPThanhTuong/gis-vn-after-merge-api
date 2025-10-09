@@ -19,6 +19,6 @@ public class ProvinceProfile : Profile
 		CreateMap<Province, ProvinceDtoRes>()
 			.ForMember(
 				dest => dest.Boundary,
-				opt => opt.MapFrom(src => new GeoJsonWriter().Write(src.Boundary)));
+				opt => opt.ConvertUsing(new ProvinceMultiPolygonToGeoJsonConverter(), src => src));
 	}
 }

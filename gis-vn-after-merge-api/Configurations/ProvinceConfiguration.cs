@@ -17,7 +17,7 @@ public class ProvinceConfiguration : IEntityTypeConfiguration<Province>
 			{
 				Id = 1,
 				Name = "Hà Nội",
-				Boundary = geometryFactory.CreateGeometryCollection([
+				Boundary = geometryFactory.CreateMultiPolygon([
 					geometryFactory.CreatePolygon([
 						new Coordinate(105.8, 21.0),
 						new Coordinate(105.9, 21.0),
@@ -31,7 +31,7 @@ public class ProvinceConfiguration : IEntityTypeConfiguration<Province>
 			{
 				Id = 2,
 				Name = "Hồ Chí Minh",
-				Boundary = geometryFactory.CreateGeometryCollection([
+				Boundary = geometryFactory.CreateMultiPolygon([
 					geometryFactory.CreatePolygon([
 						new Coordinate(106.6, 10.7),
 						new Coordinate(106.8, 10.7),

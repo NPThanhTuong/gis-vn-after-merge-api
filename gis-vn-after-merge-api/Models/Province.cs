@@ -12,7 +12,7 @@ public class Province
 
 	[Column("name")] public required string Name { get; set; }
 
-	[Column("boundary")] public required Geometry Boundary { get; set; }
+	[Column("boundary")] public required MultiPolygon Boundary { get; set; }
 
 	public ICollection<Commune> Communes { get; set; } = new List<Commune>();
 }
