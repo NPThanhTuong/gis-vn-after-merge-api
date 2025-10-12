@@ -18,7 +18,10 @@ public class ProvinceProfile : Profile
 
 		CreateMap<Province, ProvinceDtoRes>()
 			.ForMember(
-				dest => dest.Boundary,
-				opt => opt.ConvertUsing(new ProvinceMultiPolygonToGeoJsonConverter(), src => src));
+				dest => dest.Area,
+				opt => opt.MapFrom(src => src.Communes.Sum(c => c.Area)))
+			.ForMember(
+				dest => dest.Population,
+				opt => opt.MapFrom(src => src.Communes.Sum(c => c.Population)));
 	}
 }

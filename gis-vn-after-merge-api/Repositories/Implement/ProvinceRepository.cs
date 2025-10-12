@@ -16,6 +16,7 @@ public class ProvinceRepository(ApplicationDbContext context) : IProvinceReposit
 	public async Task<List<Province>> GetAll()
 	{
 		return await context.Provinces
+			.Include(p => p.Communes)
 			.ToListAsync();
 	}
 

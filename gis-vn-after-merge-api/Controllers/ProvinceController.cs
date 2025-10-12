@@ -31,7 +31,7 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 	[HttpGet("geojson")]
 	public async Task<IActionResult> GetProvinceGeoJson()
 	{
-		var provinces = await provinceService.GetAll(); 
+		var provinces = await provinceService.GetAll();
 		var featureCollection = new FeatureCollection();
 
 		foreach (var feature in provinces.Select(province => new Feature
@@ -42,6 +42,8 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 				         {"id",  province.Id},
 				         {"legacyId", province.LegacyId},
 				         { "name", province.Name },
+				         { "area", province.Communes.Sum(c => c.Area) },
+				         { "population", province.Communes.Sum(c => c.Population) },
 			         })
 		         }))
 		{

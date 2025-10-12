@@ -5,7 +5,7 @@ public class ProvinceDtoRes
 	public int Id { get; set; }
 	public int LegacyId { get; set; }
 	public string Name { get; set; } = string.Empty;
-	public string Boundary { get; set; } = string.Empty;
-
-	// public List<CommuneDtoRes> Communes { get; set; }
+	public double Area { get; set; }
+	public int Population { get; set; }
+	
 }

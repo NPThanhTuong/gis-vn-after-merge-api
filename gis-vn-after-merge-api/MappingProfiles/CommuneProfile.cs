@@ -11,10 +11,7 @@ public class CommuneProfile: Profile
 {
 	public CommuneProfile()
 	{
-		// CreateMap<Commune, CommuneDtoRes>()
-		// 	.ForMember(
-		// 		dest => dest.Boundary, 
-		// 		opt => opt.ConvertUsing(new MultiPolygonToGeoJsonConverter(), src => src));
+		CreateMap<Commune, CommuneDtoRes>();
 		
 		CreateMap<CommuneDtoReq, Commune>()
 			.ForMember(

@@ -1,3 +1,5 @@
+using AutoMapper;
+using gis_vn_after_merge_api.DTOs.Response;
 using gis_vn_after_merge_api.Services;
 using Microsoft.AspNetCore.Mvc;
 using NetTopologySuite.Features;
@@ -8,10 +10,20 @@ namespace gis_vn_after_merge_api.Controllers;
 
 [Route("api/v1/communes")]
 [ApiController]
-public class CommuneController(ICommuneService communeService) : ControllerBase
+public class CommuneController(ICommuneService communeService, IMapper mapper) : ControllerBase
 {
+	[HttpGet]
+	public async Task<IActionResult> GetAll()
+	{
+		var communes = await communeService.GetAll();
+
+		var communesResponse = mapper.Map<List<CommuneDtoRes>>(communes);
+		
+		return Ok(ApiResponse<List<CommuneDtoRes>>.Success(communesResponse));
+	}
+	
 	[HttpGet("geojson")]
-	public async Task<IActionResult> GetProvinceGeoJson()
+	public async Task<IActionResult> GetCommunesGeoJson()
 	{
 		var communes = await communeService.GetAll(); 
 		var featureCollection = new FeatureCollection();
