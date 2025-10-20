@@ -38,6 +38,8 @@ public class CommuneController(ICommuneService communeService, IMapper mapper) :
 				         { "name", commune.Name },
 				         { "area", commune.Area },
 				         { "population", commune.Population },
+				         { "mergeFrom", commune.MergeFrom},
+				         { "administrativeCenter", commune.AdministrativeCenter},
 			         })
 		         }))
 		{

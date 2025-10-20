@@ -44,6 +44,8 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 				         { "name", province.Name },
 				         { "area", province.Communes.Sum(c => c.Area) },
 				         { "population", province.Communes.Sum(c => c.Population) },
+				         { "mergeFrom", province.MergeFrom},
+				         { "administrativeCenter", province.AdministrativeCenter},
 			         })
 		         }))
 		{
