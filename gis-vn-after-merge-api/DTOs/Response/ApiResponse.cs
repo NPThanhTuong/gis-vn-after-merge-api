@@ -11,7 +11,7 @@ public class ApiResponse<T>
 	public string? Error { get; set; }
 
 	public int Code { get; set; }
-	
+
 	public static ApiResponse<T> Success(T data, int code = StatusCodes.Status200OK)
 	{
 		return new ApiResponse<T> { Data = data, Code = code };

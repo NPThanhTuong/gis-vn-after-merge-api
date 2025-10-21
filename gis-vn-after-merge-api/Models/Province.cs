@@ -14,13 +14,13 @@ public class Province
 	[Column("name")] public required string Name { get; set; }
 
 	[Column("boundary")] public required MultiPolygon Boundary { get; set; }
-	
+
 	[Column("merge_from")]
-	[MaxLength(256)] 
+	[MaxLength(256)]
 	public required string MergeFrom { get; set; }
-	
+
 	[Column("administrative_center")]
-	[MaxLength(256)] 
+	[MaxLength(256)]
 	public required string AdministrativeCenter { get; set; }
 
 	public ICollection<Commune> Communes { get; set; } = new List<Commune>();

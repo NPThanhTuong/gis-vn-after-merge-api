@@ -15,7 +15,7 @@ public class CommuneService(ICommuneRepository communeRepository) : ICommuneServ
 	public async Task<List<Commune>> GetAll()
 	{
 		var communes = await communeRepository.GetAll();
-		
+
 		return communes;
 	}
 }

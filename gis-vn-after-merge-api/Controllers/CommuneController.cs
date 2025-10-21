@@ -18,17 +18,17 @@ public class CommuneController(ICommuneService communeService, IMapper mapper) :
 		var communes = await communeService.GetAll();
 
 		var communesResponse = mapper.Map<List<CommuneDtoRes>>(communes);
-		
+
 		return Ok(ApiResponse<List<CommuneDtoRes>>.Success(communesResponse));
 	}
-	
+
 	[HttpGet("geojson")]
 	public async Task<IActionResult> GetCommunesGeoJson()
 	{
-		var communes = await communeService.GetAll(); 
+		var communes = await communeService.GetAll();
 		var featureCollection = new FeatureCollection();
 
-		foreach (var feature in communes.Select(commune => new Feature()
+		foreach (var feature in communes.Select(commune => new Feature
 		         {
 			         Geometry = commune.Boundary,
 			         Attributes = new AttributesTable(new Dictionary<string, object>
@@ -38,13 +38,11 @@ public class CommuneController(ICommuneService communeService, IMapper mapper) :
 				         { "name", commune.Name },
 				         { "area", commune.Area },
 				         { "population", commune.Population },
-				         { "mergeFrom", commune.MergeFrom},
-				         { "administrativeCenter", commune.AdministrativeCenter},
+				         { "mergeFrom", commune.MergeFrom },
+				         { "administrativeCenter", commune.AdministrativeCenter }
 			         })
 		         }))
-		{
 			featureCollection.Add(feature);
-		}
 
 		// Serialize FeatureCollection
 		var serializer = GeoJsonSerializer.Create();
@@ -53,5 +51,5 @@ public class CommuneController(ICommuneService communeService, IMapper mapper) :
 		serializer.Serialize(jsonWriter, featureCollection);
 
 		return Ok(stringWriter.ToString());
-	} 
+	}
 }

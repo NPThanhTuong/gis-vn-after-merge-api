@@ -10,14 +10,14 @@ public class ProvinceService(IProvinceRepository provinceRepository) : IProvince
 	{
 		if (id <= 0) throw new InvalidPathParamsException("Province's 'id' must be greater than zero");
 		var result = await provinceRepository.GetById(id);
-		
+
 		return result ?? throw new NotFoundException($"Province with id {id} was not found");
 	}
 
 	public async Task<List<Province>> GetAll()
 	{
 		var result = await provinceRepository.GetAll();
-		
+
 		return result;
 	}
 

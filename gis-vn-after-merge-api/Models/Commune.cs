@@ -18,13 +18,13 @@ public class Commune
 	[Column("population")] public required int Population { get; set; }
 
 	[Column("boundary")] public required MultiPolygon Boundary { get; set; }
-	
+
 	[Column("merge_from")]
-	[MaxLength(1024)] 
+	[MaxLength(1024)]
 	public required string MergeFrom { get; set; }
-	
-	[Column("administrative_center")] 
-	[MaxLength(256)] 
+
+	[Column("administrative_center")]
+	[MaxLength(256)]
 	public required string AdministrativeCenter { get; set; }
 
 	[Column("province_id")] public int ProvinceId { get; set; }

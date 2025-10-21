@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-	options.AddPolicy(name: "WebGisUi",
-		policy  =>
+	options.AddPolicy("WebGisUi",
+		policy =>
 		{
 			policy.WithOrigins("https://localhost:7217")
 				.AllowAnyHeader()

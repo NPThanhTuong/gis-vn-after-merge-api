@@ -1,4 +1,3 @@
-using gis_vn_after_merge_api.Configurations;
 using gis_vn_after_merge_api.Models;
 using Microsoft.EntityFrameworkCore;
 

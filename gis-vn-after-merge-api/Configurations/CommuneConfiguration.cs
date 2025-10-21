@@ -1,8 +1,6 @@
 using gis_vn_after_merge_api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NetTopologySuite;
-using NetTopologySuite.Geometries;
 
 namespace gis_vn_after_merge_api.Configurations;
 
@@ -50,6 +48,5 @@ public class CommuneConfiguration : IEntityTypeConfiguration<Commune>
 		// 		])
 		// 	}
 		// );
-
 	}
 }

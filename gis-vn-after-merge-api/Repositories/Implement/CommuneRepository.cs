@@ -9,14 +9,14 @@ public class CommuneRepository(ApplicationDbContext context) : ICommuneRepositor
 	public async Task<Commune?> GetById(int id)
 	{
 		var commune = await context.Communes.FirstOrDefaultAsync(c => c.Id == id);
-		
+
 		return commune;
 	}
 
 	public async Task<List<Commune>> GetAll()
 	{
 		var communes = await context.Communes.ToListAsync();
-		
+
 		return communes;
 	}
 

@@ -1,7 +1,7 @@
 using AutoMapper;
 using gis_vn_after_merge_api.Models;
 using NetTopologySuite.Features;
-using NetTopologySuite.IO;	
+using NetTopologySuite.IO;
 using Newtonsoft.Json;
 
 namespace gis_vn_after_merge_api.Helpers;
@@ -11,14 +11,14 @@ public class ProvinceMultiPolygonToGeoJsonConverter : IValueConverter<Province, 
 	public string Convert(Province sourceMember, ResolutionContext context)
 	{
 		// Tạo Feature với Geometry là MultiPolygon và Properties chứa thông tin tỉnh
-		var feature = new Feature()
+		var feature = new Feature
 		{
 			Geometry = sourceMember.Boundary,
 			Attributes = new AttributesTable(new Dictionary<string, object>
 			{
 				{ "id", sourceMember.Id },
 				{ "name", sourceMember.Name },
-				{ "legacyId", sourceMember.LegacyId },
+				{ "legacyId", sourceMember.LegacyId }
 			})
 		};
 

@@ -19,7 +19,7 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 		var response = mapper.Map<List<ProvinceDtoRes>>(result);
 		return Ok(ApiResponse<List<ProvinceDtoRes>>.Success(response));
 	}
-	
+
 	[HttpGet("{id}")]
 	public async Task<IActionResult> GetProvinceById(int id)
 	{
@@ -39,18 +39,16 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 			         Geometry = province.Boundary,
 			         Attributes = new AttributesTable(new Dictionary<string, object>
 			         {
-				         {"id",  province.Id},
-				         {"legacyId", province.LegacyId},
+				         { "id", province.Id },
+				         { "legacyId", province.LegacyId },
 				         { "name", province.Name },
 				         { "area", province.Communes.Sum(c => c.Area) },
 				         { "population", province.Communes.Sum(c => c.Population) },
-				         { "mergeFrom", province.MergeFrom},
-				         { "administrativeCenter", province.AdministrativeCenter},
+				         { "mergeFrom", province.MergeFrom },
+				         { "administrativeCenter", province.AdministrativeCenter }
 			         })
 		         }))
-		{
 			featureCollection.Add(feature);
-		}
 
 		// Serialize FeatureCollection
 		var serializer = GeoJsonSerializer.Create();
@@ -59,5 +57,5 @@ public class ProvinceController(IProvinceService provinceService, IMapper mapper
 		serializer.Serialize(jsonWriter, featureCollection);
 
 		return Ok(stringWriter.ToString());
-	} 
+	}
 }

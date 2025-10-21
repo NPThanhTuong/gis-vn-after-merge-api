@@ -22,7 +22,7 @@ public class GeoJsonToGeometryConverter : IValueConverter<string, MultiPolygon>
 
 		if (geometry is Polygon polygon)
 			geometry = new MultiPolygon([polygon]);
-		
+
 		return (MultiPolygon)geometry;
 	}
 }

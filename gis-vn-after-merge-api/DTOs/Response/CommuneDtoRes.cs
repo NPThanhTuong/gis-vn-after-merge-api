@@ -7,4 +7,6 @@ public class CommuneDtoRes
 	public string Name { get; set; } = string.Empty;
 	public double Area { get; set; }
 	public int Population { get; set; }
+	public string MergeFrom { get; set; } = string.Empty;
+	public string AdministrativeCenter { get; set; } = string.Empty;
 }
